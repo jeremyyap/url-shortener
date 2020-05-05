@@ -4,7 +4,7 @@ class ShortLinkController < ApplicationController
   def create
     short_link = ShortLink.new(new_link_params)
     if short_link.save
-      render json: { slug: 'Testing' }
+      render json: { slug: short_link.slug }
     else
       head :bad_request
     end
