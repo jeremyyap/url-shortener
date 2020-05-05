@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2020_05_04_145137) do
   enable_extension "plpgsql"
 
   create_table "short_links", force: :cascade do |t|
-    t.string "slug"
-    t.string "original_url"
+    t.string "slug", null: false
+    t.string "original_url", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_short_links_on_slug", unique: true
