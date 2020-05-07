@@ -1,0 +1,48 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 200px;
+}
+
+.title {
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'helvetica';
+}
+
+.subtitle {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-bg {
+    background-color: navy;
+}
+
+.form {
+    display: flex;
+    margin: auto;
+    max-width: 1000px;
+    padding: 20px 0;
+    justify-content: center;
+
+    input[type="text"] {
+        height: 40px;
+        font-size: 24px;
+        width: 100%;
+        border-radius: 8px;
+    }
+
+    button {
+        height: 40px;
+        font-size: 24px;
+        margin-left: 16px;
+        padding: 0px 32px;
+        border-radius: 8px;
+    }
+}

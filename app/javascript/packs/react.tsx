@@ -5,17 +5,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-interface HelloProps {
-  name: string;
-}
+import Form from './react/Form';
+import './react/styles';
 
-const Hello = ({ name = 'David' }: HelloProps) => (
-  <div>Hello {name}!</div>
-)
+const HomePage = () => (
+  <>
+    <div className="title">sho.rt</div>
+    <div className="subtitle">Generate short links for easy sharing</div>
+    <Form />
+  </>
+);
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Hello name="React" />,
+    <HomePage />,
     document.body.appendChild(document.createElement('div')),
   )
 })
