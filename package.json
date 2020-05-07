@@ -1,6 +1,9 @@
 {
   "name": "url_shortener",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.9.4",
     "@rails/actioncable": "^6.0.0",
@@ -20,6 +23,13 @@
   },
   "version": "0.1.0",
   "devDependencies": {
+    "@types/enzyme": "^3.10.5",
+    "@types/jest": "^25.2.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "jest": "^26.0.1",
+    "react-test-renderer": "^16.13.1",
+    "ts-jest": "^25.5.0",
     "webpack-dev-server": "^3.10.3"
   }
 }
