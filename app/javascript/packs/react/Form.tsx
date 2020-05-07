@@ -6,6 +6,7 @@ import ShortURL from './ShortURL';
 export default () => {
   const [originalURL, setOriginalURL] = useState('');
   const [shortURL, setShortURL] = useState('');
+  const [error, setError] = useState('');
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => setOriginalURL(e.target.value);
 
   const handleSubmit = (e) => {
@@ -15,10 +16,19 @@ export default () => {
       link: {
         original_url: originalURL
       }
+    }, {
+      timeout: 5000
     }).then(response => {
-      if (response.status === 200) {
-        setShortURL(response.data);
+      setShortURL(response.data);
+    }).catch(err => {
+      if (!err.response) {
+        setError(err.message);
+      } else if (err.response.status == 400) {
+        setError('An error occurred while shortening your URL, please try again.')
+      } else if (err.response.status >= 500) {
+        setError('Something is wrong with the server, please try again later.');
       }
+      setShortURL('');
     });
   }
 
@@ -37,6 +47,7 @@ export default () => {
           </div>
         </div>
       </form>
+      {error && <div className="error">{error}</div>}
       {shortURL && <ShortURL url={shortURL} />}
     </>
   )
