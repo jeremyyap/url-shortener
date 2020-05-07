@@ -12,7 +12,15 @@ class ShortLinkController < ApplicationController
 
   def show
     short_link = ShortLink.find_by(slug: params[:slug])
-    redirect_to short_link.original_url
+
+    if short_link
+      redirect_to short_link.original_url
+    else
+      respond_to do |format|
+        format.html { render file: "#{Rails.root}/public/404", layout: false, status: :not_found }
+        format.any  { head :not_found }
+      end
+    end
   end
 
   private
