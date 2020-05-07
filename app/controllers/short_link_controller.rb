@@ -10,7 +10,7 @@ class ShortLinkController < ApplicationController
     if @short_link.save
       render json: "#{ENV['HOSTNAME']}/#{@short_link.slug}"
     else
-      head :bad_request
+      render json: { message: @short_link.errors.full_messages.join('\n') }, status: :unprocessable_entity
     end
   end
 

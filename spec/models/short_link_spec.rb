@@ -6,6 +6,16 @@ RSpec.describe ShortLink, type: :model do
     expect(short_link).to_not be_valid
   end
 
+  it 'is not valid when original_url is empty' do
+    short_link = ShortLink.new(original_url: '')
+    expect(short_link).to_not be_valid
+  end
+
+  it 'is not valid when original_url is missing hostname' do
+    short_link = ShortLink.new(original_url: 'http://')
+    expect(short_link).to_not be_valid
+  end
+
   it 'prepends https:// if protocol is missing' do
     short_link = ShortLink.new(original_url: 'www.google.com')
     expect(short_link.original_url).to eq('https://www.google.com')

@@ -20,9 +20,12 @@ export default () => {
       timeout: 5000
     }).then(response => {
       setShortURL(response.data);
+      setError('');
     }).catch(err => {
       if (!err.response) {
         setError(err.message);
+      } else if (err.response.data) {
+        setError(err.response.data.message)
       } else if (err.response.status == 400) {
         setError('An error occurred while shortening your URL, please try again.')
       } else if (err.response.status >= 500) {

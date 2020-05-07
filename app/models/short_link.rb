@@ -1,7 +1,7 @@
 class ShortLink < ApplicationRecord
-  validates_presence_of :original_url
-  validates_presence_of :slug
   after_initialize :set_defaults
+  validate :original_url_must_have_hostname
+  validates_presence_of :slug, allow_blank: false
 
   SLUG_LENGTH = 7
   # TODO: Might want to reduce the charset to improve readability
@@ -11,8 +11,8 @@ class ShortLink < ApplicationRecord
   private
 
   def set_defaults
-    add_url_protocol
     self.slug ||= random_unique_slug
+    add_url_protocol
   end
 
   def random_unique_slug
@@ -27,9 +27,16 @@ class ShortLink < ApplicationRecord
   end
 
   def add_url_protocol
-    return unless original_url
+    return if original_url.blank?
 
     uri = URI.parse(original_url)
     self.original_url = 'https://' + original_url unless uri.scheme
+  end
+
+  def original_url_must_have_hostname
+    return errors.add(:original_url, 'cannot be empty') if original_url.blank?
+
+    uri = URI.parse(original_url)
+    errors.add(:original_url, 'cannot have no hostname') unless uri.host
   end
 end
