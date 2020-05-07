@@ -1,5 +1,6 @@
 class ShortLink < ApplicationRecord
-  before_validation :add_url_protocol
+  validates_presence_of :original_url
+  validates_presence_of :slug
   after_initialize :set_defaults
 
   SLUG_LENGTH = 7
@@ -10,6 +11,7 @@ class ShortLink < ApplicationRecord
   private
 
   def set_defaults
+    add_url_protocol
     self.slug ||= random_unique_slug
   end
 
@@ -25,8 +27,9 @@ class ShortLink < ApplicationRecord
   end
 
   def add_url_protocol
-    uri = URI.parse(original_url)
+    return unless original_url
 
+    uri = URI.parse(original_url)
     self.original_url = 'https://' + original_url unless uri.scheme
   end
 end
