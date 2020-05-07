@@ -17,7 +17,7 @@ export default () => {
       }
     }).then(response => {
       if (response.status === 200) {
-        setShortURL(window.location.origin + '/' + response.data.slug);
+        setShortURL(response.data);
       }
     });
   }
