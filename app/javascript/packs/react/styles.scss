@@ -24,6 +24,14 @@ body {
     background-color: navy;
 }
 
+button {
+    padding: 0px 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
 .form {
     display: flex;
     margin: auto;
@@ -42,7 +50,30 @@ body {
         height: 40px;
         font-size: 24px;
         margin-left: 16px;
-        padding: 0px 32px;
-        border-radius: 8px;
+
+        &:hover {
+            background-color: #ccc;
+        }
+    }
+}
+
+.result {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 8px;
+    margin: 20px auto 0;
+    padding: 14px 16px;
+    height: 60px;
+    max-width: 1000px;
+    font-size: 24px;
+    border: 1px solid #888;
+
+    button {
+        background-color: skyblue;
+        font-size: 20px;
+
+        &:hover {
+            background-color: royalblue;
+        }
     }
 }
