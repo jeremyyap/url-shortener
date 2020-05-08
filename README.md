@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+- Ruby (>= 2.5.0)
+- npm, yarn
+- Postgres (`docker-compose up -d` to use container)
 
-* Ruby version
+## Running the project
 
-* System dependencies
+1. `cp .env.example .env`
+2. `bundle install`
+3. `bundle exec rails db:setup`
+4. `bundle exec rails s`
+5. `yarn install`
+6. `bin/webpack-dev-server`
+7. Visit localhost:3000 in your browser or use the following command to make requests.
 
-* Configuration
+```sh
+curl -XPOST localhost:3000/link -d '{ "link": { "original_url": "www.google.com" } }' -H 'Content-Type: application/json'
+```
 
-* Database creation
+## Running tests
 
-* Database initialization
+- Backend tests: `bundle exec rspec`
+- Frontend tests: `yarn test`
 
-* How to run the test suite
+## Code structure
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The frontend React code is located at `app/javascript/packs/react`
