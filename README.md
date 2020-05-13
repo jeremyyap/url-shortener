@@ -9,10 +9,10 @@
 ## Running the project
 
 1. `cp .env.example .env`
-2. `bundle install`
-3. `bundle exec rails db:setup`
-4. `bundle exec rails s`
-5. `yarn install`
+2. `yarn install`
+3. `bundle install`
+4. `bundle exec rails db:setup`
+5. `bundle exec rails s`
 6. `bin/webpack-dev-server`
 7. Visit localhost:3000 in your browser or use the following command to make requests.
 
